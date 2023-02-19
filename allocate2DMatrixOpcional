@@ -1,0 +1,45 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+int** allocate2DMatrixOpcional(int rows, int columns)
+{
+    int** a;
+    int i;
+
+    a = (int**)calloc(rows, sizeof(int*));
+    if (!a)
+        return NULL;
+
+    for (i = 0; i < rows; i++)  //allocating an array of integers for every row
+    {
+        
+        a[i] = (int*)calloc(columns, sizeof(int));
+        if (!a[i])
+        {
+            // TODO --> freeMatrix
+            return NULL;
+        }
+
+    }
+    return a;
+}
+
+int main() 
+{
+    int** myMatrix;
+    int rows, columns;
+
+    printf("Enter number of rows for the 2D Matrix: ");
+    scanf("%d", &rows);
+
+    printf("Enter number of columns for row: ");
+    scanf("%d", &columns);
+
+    myMatrix = allocate2DMatrixOpcional(rows,columns);
+
+    return 0;
+}
