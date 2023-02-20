@@ -1,0 +1,12 @@
+void swapColumns(int** a, int columns1, int columns2, int totalRows)
+{
+    int i;
+    int temp;
+    for (i = 0; i < totalRows; i++)
+    {
+        temp = a[i][columns1];
+        a[i][columns1] = a[i][columns2];
+        a[i][columns2] = temp;
+    }
+    
+}
