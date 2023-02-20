@@ -1,0 +1,7 @@
+void swapRows(void **a, int rows1, int rows2)
+{
+    void* temp;
+    temp = a[rows1];
+    a[rows1] = a[rows2];
+    a[rows2] = temp;
+}
