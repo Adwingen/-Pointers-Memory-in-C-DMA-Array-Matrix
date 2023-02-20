@@ -1,0 +1,75 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+
+void freeMatrix(int** a, int rows)
+{
+    int i;
+    for (i = 0; i < rows; i++)
+    {
+        free(a[i]);
+    }
+    free(a);
+}
+
+
+void print2DDynamicMatrix(int** a, int rows, int columns)
+{
+    int i, j;
+    for (i = 0; i < rows; i++) // i->>rows
+    {
+        for (j = 0; j < columns; j++)
+            printf("%9d", a[i][j]);
+    }
+    printf("/n");
+}
+
+int** allocate2DMatrixOpcional(int rows, int columns)
+{
+    int** a;
+    int i;
+
+    a = (int**)calloc(rows, sizeof(int*));
+    if (!a)
+        return NULL;
+
+    for (i = 0; i < rows; i++)  //allocating an array of integers for every row
+    {
+        
+        a[i] = (int*)calloc(columns, sizeof(int));
+        if (!a[i])
+        {
+            // TODO --> freeMatrix
+            return NULL;
+        }
+
+    }
+    return a;
+}
+
+int main() 
+{
+    int** myMatrix;
+    int rows, columns;
+    int i, j;
+
+    printf("Enter number of rows for the 2D Matrix: ");
+    scanf("%d", &rows);
+
+    printf("Enter number of columns for row: ");
+    scanf("%d", &columns);
+
+    myMatrix = allocate2DMatrixOpcional(rows,columns);
+
+    print2DDynamicMatrix(myMatrix, rows, columns);
+
+    freeMatrix(myMatrix, rows);
+
+   
+
+    return 0;
+}
