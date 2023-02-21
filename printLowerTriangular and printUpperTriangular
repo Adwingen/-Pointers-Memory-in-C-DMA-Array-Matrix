@@ -1,0 +1,101 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+
+void printLowerTriangular(int** a, int n)
+{
+    int i, j;
+    for (i = 0; i < n; i++)//colomns
+    {
+        for (j = 0; j < n; j++)//row
+        {
+            if (i < j)
+                printf("  *");
+            else //i>=j
+                printf("%3d", a[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void printUpperTriangular(int** a, int n)
+{
+    int i, j;
+    for (i = 0; i < n; i++)//colomns
+    {
+        for (j = 0; j < n; j++)//row
+        {
+            if (i > j)
+                printf("  *");
+            else //i<=j
+                printf("%3d", a[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int** createUpperTriangular(int n)
+{
+    int** a;
+    int i;
+    a = (int**)malloc(n * sizeof(int*));
+
+    for (i = 0; i < n; i++)
+    {
+        a[i] = (int*)malloc((n - 1) * sizeof(int));
+
+    }
+    return a;
+}
+
+int** createLowerTriangular(int n)
+{
+    int** a=NULL;
+    int i,j;
+    a = (int**)malloc(n * sizeof(int*));
+
+    for (i = 0; i < n; i++)
+    {
+        a[i] = (int*)malloc((i + 1) * sizeof(int));
+    }
+
+
+    // insert the numbers
+
+    for (i = 0; i < n; i++)//colomns
+    {
+        for (j = 0; j < n; j++)//row
+        {
+            if (i >= j)
+            {
+                //printf("Enter the number to input in [%d][%d] :", i, j);
+                //scanf("%d", &a[i][j]);
+                    a[i][j] = i;
+            }
+           
+        }
+       
+    }
+
+    return a;
+}
+
+
+int main()
+{
+    int** myMatrix;
+    int rows;
+
+    printf("Enter the number of rows: ");
+    scanf("%d", &rows);
+   
+    myMatrix = createLowerTriangular(rows);
+
+    printLowerTriangular(myMatrix, rows);
+
+    return 0;
+}
